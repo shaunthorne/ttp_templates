@@ -1,0 +1,19 @@
+<doc>
+TTP template to parse D-Link DES/DGS switch 'show vlan' output
+
+Currently supported series:
+DES-xx28/ME
+DES-3200-xx/ME
+DSG-1100-06/ME
+DGS-1510 Series
+</doc>
+
+<vars>
+tagged_prefix = "Tagged|Current\sTagged"
+</vars>
+
+<group name='vlans.{{ vid }}'>
+VID : {{ vid }} VLAN {{ ignore}} : {{ vlan_name }}
+Member Ports : {{ ports | unrange(rangechar='-', joinchar=',')}}
+{{ ignore(tagged_prefix) }} Ports : {{ ports_tagged | unrange(rangechar='-', joinchar=',')}}
+</group>
